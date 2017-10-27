@@ -42,11 +42,35 @@ Soon afterward, the balance of your Metamask account should increase by 3 ETH. N
 
 One interesting and defining characteristic of blockchains is that transactions are completely public. You can even see the transaction that the faucet sent to your account by going to the [Etherscan block explorer](https://ropsten.etherscan.io/) and searching for your address in the search bar.
 
-### Try using a dApp
+## Using a dApp
+
+Now we're ready to actually use a dApp. I have deployed one [here](https://jimpo.github.io/ethereum-development-guide/the-button/) inspired by Reddit's [The Button](https://en.wikipedia.org/wiki/The_Button_(Reddit)) experiment. 
+
+The idea is that there is a countdown timer and every time someone presses the button, the timer resets. If the timer reaches 0, however, the button is frozen for the rest of time and the experiment ends. Each Ethereum account may only press the button once, and depending on how close the timer is to 0 when a user presses it, he or she will be rewarded with their screen showing a certain color, which translates directly into street cred. So go ahead, try it out.
+
+You'll notice that when you press the button, Metamask pops up asking you if you will authorize a transaction. This is because the way that you submit your button press to the blockchain is with a transaction.
+
+The frontend of the application is just regular HTML, CSS, and JavaScript, so a dApp can look and feel just like a regular web application. Instead of connecting to a centralized server, though, the web page uses Metamask to communicate with the blockchain. Pretty cool, huh?
 
 ### A deeper look at contracts
 
-, which is the code that actually runs on the blockchain.
+Let's dive into what is happening on the "backend". The web frontend is communicating with a piece of code that lives on the blockchain called a *smart contract*. When you pressed the button and submitted a transaction, you actually called a method on the smart contract.
+
+While some contracts have a custom frontend like this one, we can use another tool called MyEtherWallet to interact with contracts directly. Go to [this page](https://www.myetherwallet.com/#contracts).
+
+First, on the top right hand side of the page, change the network to Ropsten, the test network.
+
+Next, in order to specifiy to MyEtherWallet which contract you want to look at, you need to provide an address (just like an account address) and an interface specification called an ABI. You can get this on the Button page, by toggling the "Show contract address and ABI" link. Copy them over and paste them into MyEtherWallet and click "Access". The last thing you need to do is select that you are using Metamask.
+
+<img src="images/myetherwallet-ropsten-select.png" width="50%">
+
+You should now see a drop down with a list of methods you can call. For example, if you select "pressTimes", copy your Metamask account address into the box, and click "Read", it will tell you how many seconds your press was from the one before it. You can even try executing the "press" method.
+
+<img src="images/myetherwallet-access-contract.png" width="50%">
+
+### The source code
+
+In case you want to see the code for The Button, it is all [right here](https://github.com/jimpo/ethereum-development-guide/tree/master/the-button).
 
 ## Developing
 
