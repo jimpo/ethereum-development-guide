@@ -41,7 +41,7 @@ export default function BoxView({initialized, error, pressTime, remainingTime, t
     if (waiting) {
       waitingAlert = (
         <div className="alert alert-warning">
-          Waiting for network to confirm the button press...
+          Waiting for network to confirm the button press. This will take ~30 seconds.
         </div>
       );
     }
