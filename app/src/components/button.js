@@ -4,16 +4,21 @@ import React from 'react';
 import {formatCountdown, hueForCountdown} from '../util';
 
 
-function Button({havePressed}) {
+function Button({havePressed, remainingTime, onPress}) {
+  const disabled = havePressed || remainingTime === 0;
+
   let glyphiconType;
-  if (havePressed) {
+  if (disabled) {
     glyphiconType = 'glyphicon-lock';
   } else {
     glyphiconType = 'glyphicon-hand-up';
   }
 
   return (
-    <button className="the-button btn btn-default btn-lg" disabled={havePressed}>
+    <button
+      className="the-button btn btn-default btn-lg"
+      disabled={disabled}
+      onClick={onPress}>
       <span className={classNames('glyphicon', glyphiconType)}/>
     </button>
   );
@@ -29,23 +34,39 @@ function Timer({remainingTime, totalTime}) {
   );
 }
 
-function BoxInnerInitialized() {
-
-}
-
-export default function BoxView({initialized, havePressed, remainingTime, totalTime}) {
+export default function BoxView({initialized, error, pressTime, remainingTime, totalTime, onPress, waiting}) {
   let child;
   if (initialized) {
+    let waitingAlert;
+    if (waiting) {
+      waitingAlert = (
+        <div className="alert alert-warning">
+          Waiting for network to confirm the button press...
+        </div>
+      );
+    }
+
     child = (
       <div className="container-fluid">
+        {waitingAlert}
         <div className="row">
           <div className="col-xs-3 col-xs-offset-2">
-            <Button havePressed={havePressed}/>
+            <Button
+              havePressed={pressTime !== 0}
+              remainingTime={remainingTime}
+              onPress={onPress}
+            />
           </div>
           <div className="col-xs-3 col-xs-offset-2">
             <Timer remainingTime={remainingTime} totalTime={totalTime}/>
           </div>
         </div>
+      </div>
+    );
+  } else if (error) {
+    child = (
+      <div className="alert alert-danger alert-uninitialized">
+        {error}
       </div>
     );
   } else {

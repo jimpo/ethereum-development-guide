@@ -17,7 +17,7 @@ export function formatCountdown(remainingTime) {
   let {hours, minutes, seconds} = breakDownTimeInterval(remainingTime);
   let hoursStr = hours.toString().padStart(2, '0');
   let minutesStr = minutes.toString().padStart(2, '0');
-  let secondsStr = hours.toString().padStart(2, '0');
+  let secondsStr = seconds.toString().padStart(2, '0');
   return `${hoursStr}:${minutesStr}:${secondsStr}`;
 }
 

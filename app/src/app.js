@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import ApplicationView from './components/application';
+import {initialize, onPress} from './contract';
 
 
 class Application extends React.Component {
@@ -13,11 +14,22 @@ class Application extends React.Component {
     this.state = {initialized: false};
   }
 
+  componentDidMount() {
+    initialize(this.setState.bind(this));
+  }
+
+  onPress() {
+    const {account, lastPress} = this.state;
+    onPress(this.setState.bind(this), account, lastPress);
+  }
+
   render() {
-    return <ApplicationView {...this.state}/>;
+    return <ApplicationView {...this.state} onPress={this.onPress.bind(this)}/>;
   }
 }
 
 window.addEventListener('load', () => {
-  ReactDOM.render(<Application/>, document.getElementById('main'));
+  const mainElement = document.getElementById('main');
+  window.contractAddress = mainElement.getAttribute('data-contract-address');
+  ReactDOM.render(<Application/>, mainElement);
 });
