@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import ApplicationView from './components/application';
-import {initialize, onPress} from './contract';
+import {initialize, onPress} from './state';
 
 
 class Application extends React.Component {

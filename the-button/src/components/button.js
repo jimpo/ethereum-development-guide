@@ -34,7 +34,38 @@ function Timer({remainingTime, totalTime}) {
   );
 }
 
-export default function BoxView({initialized, error, pressTime, remainingTime, totalTime, onPress, waiting}) {
+class ContractInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isShown: false};
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    this.setState(({isShown}) => ({isShown: !isShown})); // Toggle isShown
+  }
+
+  render() {
+    const {contract} = this.props;
+    return (
+      <div className="contract-details">
+        <a onClick={this.onClick.bind(this)}>
+          {this.state.isShown ? 'Hide ' : 'Show '} contract details
+        </a>
+        <div className={this.state.isShown ? '' : 'hidden'}>
+          <h4>Contract Address</h4>
+          <pre><code>{contract.address}</code></pre>
+          <h4>Contract ABI</h4>
+          <pre><code>
+            {JSON.stringify(contract.abi)}
+          </code></pre>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default function BoxView({initialized, error, pressTime, remainingTime, totalTime, onPress, waiting, contract}) {
   let child;
   if (initialized) {
     let waitingAlert;
@@ -61,6 +92,7 @@ export default function BoxView({initialized, error, pressTime, remainingTime, t
             <Timer remainingTime={remainingTime} totalTime={totalTime}/>
           </div>
         </div>
+        <ContractInfo contract={contract}/>
       </div>
     );
   } else if (error) {

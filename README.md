@@ -66,7 +66,7 @@ Next, in order to specifiy to MyEtherWallet which contract you want to look at, 
 
 You should now see a drop down with a list of methods you can call. For example, if you select "pressTimes", copy your Metamask account address into the box, and click "Read", it will tell you how many seconds your press was from the one before it. You can even try executing the "press" method.
 
-<img src="images/myetherwallet-access-contract.png" width="50%">
+<img src="images/myetherwallet-access-contract.png" width="100%">
 
 ### The source code
 
