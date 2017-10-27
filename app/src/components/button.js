@@ -29,20 +29,37 @@ function Timer({remainingTime, totalTime}) {
   );
 }
 
-export default function BoxView({havePressed, remainingTime, totalTime}) {
+function BoxInnerInitialized() {
+
+}
+
+export default function BoxView({initialized, havePressed, remainingTime, totalTime}) {
+  let child;
+  if (initialized) {
+    child = (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-xs-3 col-xs-offset-2">
+            <Button havePressed={havePressed}/>
+          </div>
+          <div className="col-xs-3 col-xs-offset-2">
+            <Timer remainingTime={remainingTime} totalTime={totalTime}/>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    child = (
+      <div className="alert alert-warning alert-uninitialized">
+        Loading data from the Ethereum network...
+      </div>
+    );
+  }
+
   return (
     <div className="container">
       <div className="box well well-lg">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xs-3 col-xs-offset-2">
-              <Button havePressed={havePressed}/>
-            </div>
-            <div className="col-xs-3 col-xs-offset-2">
-              <Timer remainingTime={remainingTime} totalTime={totalTime}/>
-            </div>
-          </div>
-        </div>
+        {child}
       </div>
     </div>
   );
