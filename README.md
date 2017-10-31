@@ -6,13 +6,15 @@ This is a introductory guide to programming decentralized applications on the Et
 - [A beginner's guide to Ethereum](https://blog.coinbase.com/a-beginners-guide-to-ethereum-46dd486ceecf)
 - [Getting up to speed on Ethereum](https://medium.com/@mattcondon/getting-up-to-speed-on-ethereum-63ed28821bbe)
 
-There are lots of different tools you can use to develop Ethereum applications, and in this guide I am recommending just one possible selection of tools.
+This guide is meant to provide a hands-on introduction to some common tools and serve as a starting point for anyone interested in dabbling with decentralized applications. While the guide demonstrates how to interact with the Ethereum blockchain, it does *not* explain what blockchains are nor how they work. Note also that there are lots of different tools one can use to develop Ethereum applications, and in this guide I am recommending just one possible selection of those tools suitable for beginners.
 
 ## Prerequisites
 
 In order to program dApps, you should be familiar with the following:
 
 - JavaScript/HTML/CSS
+
+You are not expected to have a prior understanding of Ethereum or blockchains generally.
 
 ## Getting started
 
@@ -44,7 +46,7 @@ One interesting and defining characteristic of blockchains is that transactions 
 
 ## Using a dApp
 
-Now we're ready to actually use a dApp. I have deployed one [here](https://jimpo.github.io/ethereum-development-guide/the-button/) inspired by Reddit's [The Button](https://en.wikipedia.org/wiki/The_Button_(Reddit)) experiment. 
+Now we're ready to actually use a dApp. I have deployed one [here](https://jimpo.github.io/ethereum-development-guide/the-button/) inspired by Reddit's [The Button](https://en.wikipedia.org/wiki/The_Button_(Reddit)) experiment.
 
 The idea is that there is a countdown timer and every time someone presses the button, the timer resets. If the timer reaches 0, however, the button is frozen for the rest of time and the experiment ends. Each Ethereum account may only press the button once, and depending on how close the timer is to 0 when a user presses it, he or she will be rewarded with their screen showing a certain color, which translates directly into street cred. So go ahead, try it out.
 
